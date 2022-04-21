@@ -1,0 +1,45 @@
+/* 
+Readwise Inbox 
+More info: https://github.com/TfTHacker/obsidian-readwise-inbox
+File version: 0.0.1 
+*/
+
+.table-view-table span, .table-view-table td {
+    white-space: pre-wrap !important;
+    vertical-align: top !important;
+}
+
+.rwbttn {
+    width: 20px !important;
+    padding:  2px !important;
+    margin-top: 2px !important;
+}
+
+
+.dataview th,
+.dataview td  {
+    /* border-right: 0px solid transparent !important; */
+    border-left: 0px solid transparent !important;
+    border-right: 0px solid transparent !important;
+    padding: 0px;
+    padding-bottom: 10px !important;
+}
+
+.table-view-table td:nth-child(1)  {
+    padding-right: 2px;
+}
+
+
+.table-view-table td:nth-child(2),
+.table-view-table td:nth-child(3),
+.table-view-table td:nth-child(4),
+.table-view-table td:nth-child(5) {
+    width: 5px;
+    max-width: 25px !important;
+    padding: 0px !important;
+}
+
+.table-view-table td:nth-child(6) {
+    width: 0px !important;
+    padding: 2px !important;
+}
