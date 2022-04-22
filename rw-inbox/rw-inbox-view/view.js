@@ -1,6 +1,6 @@
 // Readwise Inbox 
 // More info: https://github.com/TfTHacker/obsidian-readwise-inbox
-// version: 0.0.1
+// File version: 0.0.2
 
 ( async ()=>{
     const {createButton} = app.plugins.plugins["buttons"]
@@ -32,12 +32,18 @@
             args:          { name: caption, class: "rwbttn" }, 
             clickOverride: {
                 click: (blockId, file)=>{
-                    const asAlias = copyAsAlias===true ? "|*" : ""
-                    const ref = `![[${dv.io.normalize(file.name)}#^${blockId}${asAlias}]]`
+                    let ref = ""
+                    if(copyAsAlias) {
+                        ref = `[[${dv.io.normalize(file.name)}#^${blockId}|*]]`
+                        if(ifAliasIncludeText) 
+                            ref += row.block + ref;
+                    } else { 
+                        ref = `![[${dv.io.normalize(file.name)}#^${blockId}]]`
+                    }
                     navigator.clipboard.writeText( ref );
                     new Notice(`Copied to clipboard:\n${ref}`,5000)
                 }, 
-                params: [row.realId, row.file]
+                params: [row.realId, row.file, row.block]
             }
         })
     }
@@ -55,7 +61,7 @@
                     if(!log.includes(ID)) {
                         let output = {
                             id: ID, realId: b.id, file: tFile,
-                            block: contents.substring(b.position.start.offset, b.position.end.offset).replace("- ","")
+                            block: contents.substring(b.position.start.offset, b.position.end.offset).replace("- ","").replace(" ^" + b.id,"")
                         };
                         rwBlocks.push(output)
                     }
