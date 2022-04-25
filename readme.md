@@ -68,22 +68,56 @@ You can control some aspects of the output of this query by using the following 
 # Querying for specific information
 The rw-inbox-view accepts an optional parameter, a dv.pages object. This object can be used to provide a refined set of pages based on a JavaScript Dataview query. 
 
-NOTE: This is for advanced users who have experience with JavaScript.
-
 The following example return just tweets:
 
 ~~~
 ```dataviewjs
-const tweets = dv.pages('"20-Readwise/tweets"')
+const tweets = dv.pages('"Readwise/tweets"')
 dv.view("rw-inbox-view", tweets );
 ```
 ~~~
 
-Or all Twitter highlights from this year:
+All Twitter highlights from this year:
 
 ~~~
 ```dataviewjs
-const tweets = dv.pages('"20-Readwise/tweets"').filter(p=>new Date(p.created)>new Date("2022-01-01"))
+const tweets = dv.pages('"Readwise/tweets"').filter(p=>new Date(p.created)>new Date("2022-01-01"))
 dv.view("rw-inbox-view", tweets );
 ```
 ~~~
+
+
+Highlights that have been tagged with #priority, and from the readwise export folder
+
+~~~
+```dataviewjs
+const byTags = dv.pages("#priority and \"30-Files/99-ReadwiseSync\"")
+dv.view("rw-inbox-view", byTags );
+```
+~~~
+
+Highlights that have been tagged with #priority or #important, and from the readwise export folder
+
+~~~
+```dataviewjs
+const byTags = dv.pages("(#priority or #important) and \"30-Files/99-ReadwiseSync\"")
+dv.view("rw-inbox-view", byTags );
+```
+~~~
+
+Return all highlights with the frontmatter source value equal to a specific author
+
+~~~
+```dataviewjs
+const byAuthor = dv.pages('"30-Files/99-ReadwiseSync"').where(p=>p.file.frontmatter?.author=='nickwignall.com')
+dv.view("rw-inbox-view", byAuthor);
+```
+~~~
+
+
+
+
+
+
+
+
