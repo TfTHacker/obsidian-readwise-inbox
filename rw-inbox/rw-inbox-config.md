@@ -1,43 +1,53 @@
-# Instructions
-This is the configuration file for the Readwise Inbox tool. It contains the default values for this tool in your vault. Most of these settings can be overridden with frontmatter on a page where this view is embedded. See the [[readme.md]] file for more info.
+# Readwise Inbox Configuration
 
-This configuration file uses inline fields. An inline field is made up of 3 elements:
+This is the configuration file for the Readwise Inbox tool. It contains the default values for all views in your vault. These settings can also be overridden in individual files, whether in the YAML front-matter or in an inline dataview tag.
+
+This configuration file uses inline fields to set defaults. An inline field is made up of 3 elements:
 - The Field name
 - Two colons 
 - the value
 
-Example
-`FieldName:: Field value`
+
+Example:
+```
+FieldName:: Field value
+```
 
 # Configuration settings
 
 ## LimitHighlightCount
-**Definition**: The number of highlights to display. Can be overridden in a pages frontmatter.
+
+**Definition**: The number of highlights to display. Defaults to 20 if unspecified, has a maximum value of 1000.
 
 LimitHighlightCount:: 20
 
 ## SortDateAscending
-**Definition**: true will sort ascending, false will sort descending. Can be overridden in a pages frontmatter.
+
+**Definition**: true will sort ascending, false will sort descending. 
 
 SortDateAscending:: true
 
 ## ReadwisePathLogProcessed
+
 **Definition**: Name of log file for processed highlights.
 
 ReadwisePathLogProcessed:: rw-inbox-log-processed
 
 ## FilterTags
-**Definition:** Only show highlight blocks that contain the specified tag. The option should be specified without the hash mark (\#concept-todo => concept-todo)  **Note well:** for this to work, tags must be included in the block. 
 
-==TODO: have the option to filter in this file?==
-==TODO: turn into a list?==
+**Definition:** Only show highlight blocks that contain the specified tag(s). Tag names should specified without the hash mark (\#concept-todo => concept-todo). You can specify either a single value or a list of values. When a list is used, the include logic is a logical OR - a highlight featuring any of the specify tags will be included.
 
-==custom==
-Only show highlight blocks containing the specified tag
-Tag should be specified WITHOUT the name (\#concept-todo => concept-todo)
-by default, this will not be set
+**Note:** for this to work, tags must be included in the block, please see the Readme for more information.
+
+Examples:
+```
+FilterTags:: concept-todo
+FilterTags:: [concept-todo, todo, extract]
+```
 
 ## FilterTagsToExclude
-==custom== list of tags to exclude
+**Definition:** Exclude highlight blocks that contain the specified tag(s). Tag names should specified without the hash mark (\#concept-todo => concept-todo). You can specify either a single value or a list of values. When a list is used, the include logic is a logical NOR - a highlight featuring any of the specify tags will be excluded.
+
+**Note:** for this to work, tags must be included in the block, please see the Readme for more information.
 
 FilterTagsToExclude::[anki-added, concept-processed]
