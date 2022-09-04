@@ -39,15 +39,7 @@ ReadwisePathLogProcessed:: rw-inbox-log-processed
 
 **Note:** for this to work, tags must be included in the block, please see the Readme for more information.
 
-Examples:
-```
-FilterTags:: concept-todo
-FilterTags:: [concept-todo, todo, extract]
-```
-
 ## FilterTagsToExclude
 **Definition:** Exclude highlight blocks that contain the specified tag(s). Tag names should specified without the hash mark (\#concept-todo => concept-todo). You can specify either a single value or a list of values. When a list is used, the include logic is a logical NOR - a highlight featuring any of the specify tags will be excluded.
 
 **Note:** for this to work, tags must be included in the block, please see the Readme for more information.
-
-FilterTagsToExclude::[anki-added, concept-processed]
