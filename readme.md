@@ -145,35 +145,45 @@ The `rw-inbox-view` accepts an optional parameter, a `dv.pages` object. This obj
 
 The following example return just tweets:
 
+~~~
 ```dataviewjs
 const tweets = dv.pages('"Readwise/tweets"')
 dv.view("rw-inbox-view", tweets );
 ```
+~~~
 
 All Twitter highlights from this year:
 
+~~~
 ```dataviewjs
 const tweets = dv.pages('"Readwise/tweets"').filter(p=>new Date(p.created)>new Date("2022-01-01"))
 dv.view("rw-inbox-view", tweets );
 ```
+~~~
 
 Highlights that have been tagged with `#priority`, and from the Readwise export folder
 
+~~~
 ```dataviewjs
 const byTags = dv.pages("#priority and \"30-Files/99-ReadwiseSync\"")
 dv.view("rw-inbox-view", byTags );
 ```
+~~~
 
 Highlights that have been tagged with `#priority` or `#important`, and from the Readwise export folder
 
+~~~
 ```dataviewjs
 const byTags = dv.pages("(#priority or #important) and \"30-Files/99-ReadwiseSync\"")
 dv.view("rw-inbox-view", byTags );
 ```
+~~~
 
 Return all highlights with the frontmatter source value equal to a specific author:
 
+~~~
 ```dataviewjs
 const byAuthor = dv.pages('"30-Files/99-ReadwiseSync"').where(p=>p.file.frontmatter?.author=='nickwignall.com')
 dv.view("rw-inbox-view", byAuthor);
 ```
+~~~
