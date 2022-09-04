@@ -34,9 +34,9 @@
     /*** Filtering on Tags - Includes and Excludes ***/
     const filterTags = function(){
         let val = dv.current().FilterTags ? dv.current().FilterTags :
-            configFile.hasOwnProperty("FilterTags") ? configFile.FilterTags : '';
+            configFile.hasOwnProperty("FilterTags") ? configFile.FilterTags : null;
 
-        if(!Array.isArray(val))
+        if(val && !Array.isArray(val))
         {
             val = [val];
         }
@@ -46,10 +46,10 @@
 
     const filterTagsToExclude = function(){
         let val = dv.current().FilterTagsToExclude ? dv.current().FilterTagsToExclude :
-            configFile.hasOwnProperty("FilterTagsToExclude") ? configFile.FilterTagsToExclude : '';
+            configFile.hasOwnProperty("FilterTagsToExclude") ? configFile.FilterTagsToExclude : null;
 
         // We need to coerce single values into an array for consistent processing
-        if(!Array.isArray(val))
+        if(val && !Array.isArray(val))
         {
             val = [val];
         }
@@ -64,7 +64,7 @@
             configFile.hasOwnProperty("OnProcessRemoveTags") ? configFile.OnProcessRemoveTags : null;
 
         // We need to coerce single values into an array for consistent processing
-        if(!Array.isArray(val))
+        if(val && !Array.isArray(val))
         {
             val = [val];
         }
@@ -76,7 +76,7 @@
         let val = dv.current().OnProcessAddTags ? dv.current().OnProcessAddTags : configFile.hasOwnProperty("OnProcessAddTags") ? configFile.OnProcessAddTags : null;
 
         // We need to coerce single values into an array for consistent processing
-        if(!Array.isArray(val))
+        if(val && !Array.isArray(val))
         {
             val = [val];
         }
