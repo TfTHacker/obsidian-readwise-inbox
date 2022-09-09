@@ -90,6 +90,37 @@
         return val;
     }();
 
+    /*** Filtering Content Within Quotes ***/
+    const FilterFromQuoteDisplay = function(){
+        // Prefer specification in file, then specification in config, then a default
+        let regex_string = dv.current().FilterFromQuoteDisplay ? dv.current().FilterFromQuoteDisplay :
+            configFile.hasOwnProperty("FilterFromQuoteDisplay") ? configFile.FilterFromQuoteDisplay : null;
+
+        if(regex_string)
+        {
+            return new RegExp(regex_string, 'g')
+        }
+        else
+        {
+            return null;
+        }
+    }();
+
+    const FilterFromClipboardCopy = function(){
+        // Prefer specification in file, then specification in config, then a default
+        let regex_string = dv.current().FilterFromClipboardCopy ? dv.current().FilterFromClipboardCopy :
+            configFile.hasOwnProperty("FilterFromClipboardCopy") ? configFile.FilterFromClipboardCopy : null;
+
+        if(regex_string)
+        {
+            return new RegExp(regex_string, 'g')
+        }
+        else
+        {
+            return null;
+        }
+    }();
+
     /************************
     * Readwise API Requests *
     ************************/
@@ -240,6 +271,11 @@
                         {
                             ref = `[[${filename}#^${blockId}]]\n`;
                             ref += row.block;
+
+                            if(FilterFromClipboardCopy)
+                            {
+                                ref = ref.replace(FilterFromClipboardCopy, '');
+                            }
                         }
                         else {
                             ref = `[[${filename}#^${blockId}]]`
@@ -292,8 +328,10 @@
                             // Alternate single tag version: output.block.includes('#' + filterTagsToExclude)
                             if(!filterTagsToExclude || !filterTagsToExclude.find(test => output.block.includes('#' + test)))
                             {
-                                // TODO: strip out the [Tagged] block. Perhaps, too, we just allow the user
-                                // to configure the regex
+                                if(FilterFromQuoteDisplay)
+                                {
+                                    output.block = output.block.replace(FilterFromQuoteDisplay, '');
+                                }
                                 rwBlocks.push(output)
                             }
                         }

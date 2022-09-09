@@ -139,6 +139,14 @@ OnProcessAddTags: anki-added
 ---
 ```
 
+### Filtering from Quote Display
+
+We need tag information in our quotes for processing purposes, but you might not want to see them. You can filter any content from the highlight display by specifying the `FilterFromQuoteDisplay` parameter. This takes a string, such as `'{Tagged: .*}'`, and converts it into a regular expression that will be used for filtering text shown in the dataview results.
+
+### Filtering from Clipboard Copy
+
+You might want to see tag information when processing quotes, but not when copying quotes. In that case, you can specify the `FilterFromClipboardCopy` parameter. This takes a string, such as `'{Tagged: .*}'`, and converts it into a regular expression that will be used for filtering text that is copied to clipboard.
+
 ### Querying for specific information
 
 The `rw-inbox-view` accepts an optional parameter, a `dv.pages` object. This object can be used to provide a refined set of pages based on a JavaScript Dataview query. 

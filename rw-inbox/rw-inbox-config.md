@@ -43,3 +43,13 @@ ReadwisePathLogProcessed:: rw-inbox-log-processed
 **Definition:** Exclude highlight blocks that contain the specified tag(s). Tag names should specified without the hash mark (\#concept-todo => concept-todo). You can specify either a single value or a list of values. When a list is used, the include logic is a logical NOR - a highlight featuring any of the specify tags will be excluded.
 
 **Note:** for this to work, tags must be included in the block, please see the Readme for more information.
+
+## FilterFromQuoteDisplay
+**Definition:** A regex string representing text to filter out of your highlights. This is useful for eliminating things like `{Tagged: #some-tags}` from your quotes before they are presented to you.
+
+This is specified as a string without regex markers, For example, `'{Tagged: .*}'`. 
+
+## FilterFromClipboardCopy
+**Definition:** A regex string representing text to filter out of your highlights when they are copied to clipboard. This is useful for eliminating things like `{Tagged: #some-tags}` from your quotes when you copy them to the clipboard.
+
+This is specified as a string without regex markers, For example, `'{Tagged: .*}'`. 
