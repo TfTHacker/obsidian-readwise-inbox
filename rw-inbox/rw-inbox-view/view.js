@@ -234,12 +234,18 @@
             clickOverride: {
                 click: (blockId, file)=>{
                     let ref = ""
+                    let filename = dv.io.normalize(file.name).replace('.md', '')
                     if(copyAsAlias) {
-                        ref = `[[${dv.io.normalize(file.name)}#^${blockId}|*]]`
                         if(ifAliasIncludeText)
-                            ref += row.block + ref;
+                        {
+                            ref = `[[${filename}#^${blockId}]]\n`;
+                            ref += row.block;
+                        }
+                        else {
+                            ref = `[[${filename}#^${blockId}]]`
+                        }
                     } else {
-                        ref = `![[${dv.io.normalize(file.name)}#^${blockId}]]`
+                        ref = `![[${filename}#^${blockId}]]`
                     }
                     navigator.clipboard.writeText( ref );
                     new Notice(`Copied to clipboard:\n${ref}`,5000)
